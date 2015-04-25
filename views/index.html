@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="cUploadApp">
+
+<head>
+  <script src='bower_components/jquery/dist/jquery.min.js'></script>
+  <script src='bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js'></script>
+  <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+  <script src="bower_components/blueimp-load-image/js/load-image.all.min.js"></script>
+  <!-- blueimp Gallery styles -->
+  <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+  <script src="bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
+  <script src='bower_components/jquery-file-upload/js/jquery.iframe-transport.js'></script>
+  <script src='bower_components/angularjs/angular.min.js'></script>
+  <script src='bower_components/jquery-file-upload/js/jquery.fileupload-process.js'></script>
+  <script src='bower_components/jquery-file-upload/js/jquery.fileupload-audio.js'></script>
+  <script src='bower_components/jquery-file-upload/js/jquery.fileupload-video.js'></script>
+  <script src='bower_components/jquery-file-upload/js/jquery.fileupload-image.js'></script>
+  <script src='bower_components/jquery-file-upload/js/jquery.fileupload-validate.js'></script>
+  <script src='bower_components/jquery-file-upload/js/jquery.fileupload-angular.js'></script>
+  <link href="bower_components/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet">
+  <link href="bower_components/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet">
+  <script src='js/capp.js'></script>
+  <!-- bootstrap libraries -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <!-- App css -->
+  <link href="css/app.css" rel="stylesheet">
+  </style>
+</head>
+
+<body>
+  <form id="fileupload" method="POST" action="/" enctype="multipart/form-data" data-ng-controller="ImageUplaodController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+      <div class="container">
+        <h1>Cloudinary Direct Upload for Angular</h1>
+        <p>This is a sample for uploading multiple image directly from the browser and before uploading getting signed it from server. This was desinged because there is no direct upload support from cloudinary for Angular. This app is Angular-Express-Node app</p>
+      </div>
+    <div class="container">
+      <div>
+        <span class="btn btn-success fileinput-button">
+                          <i class="glyphicon glyphicon-plus"></i>
+                          <span>Add files...</span>
+        <!-- File Input Field -->
+        <input type="file" name="file" multiple>
+        </span>
+        <!-- Cancel upload wich are in progress -->
+        <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
+          <i class="glyphicon glyphicon-ban-circle"></i>
+          <span>Cancel upload</span></button>
+      </div>
+      <div ng-class="{'upload-area': (queue.length == 0)}" data-placeholder="You can select Add Files or drag image to this area">
+        <div class="row">
+          <div data-ng-repeat="file in queue" data-on="!!file.thumbnailUrl" class="col-xs-3">
+            <button type="button" class="close" data-ng-click="file.$cancel()" aria-label="Close" data-ng-hide="!file.$submit || options.autoUpload" data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'"><span aria-hidden="true"> </span></button>
+            <div class="preview" data-file-upload-preview="file"></div>
+            <div class="name">{{file.name}}</div>
+            <div class="size">{{file.size | formatFileSize}}</div>
+            <strong data-ng-show="file.error" class="error text-danger">{{file.error}}</strong>
+            <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()" style="height:10px">
+              <div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <p>By Arpit Gawande</p>
+      </footer>
+    </div>
+    <!-- Modal -->
+  </form>
+</body>
+
+</html>

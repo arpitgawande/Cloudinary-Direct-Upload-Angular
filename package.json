@@ -1,0 +1,28 @@
+{
+  "name": "Cloudinary-Direct-Upload-Angular",
+  "version": "0.0.1",
+  "description": "Its simple web app to upload photos to cloudinary web server using Angular and Node",
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "body-parser": "1.12.0",
+    "bower": "^1.4.1",
+    "cloudinary": "^1.1.1",
+    "cookie-parser": "^1.3.4",
+    "debug": "~2.1.1",
+    "ejs": "^2.3.1",
+    "express": "~4.12.2",
+    "url": "^0.10.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arpitgawande/Cloudinary-Direct-Upload-Angular.git"
+  },
+  "engines": {
+    "node": "0.10.35",
+    "npm": "1.4.28",
+    "bower": "1.4.1"
+  }
+}

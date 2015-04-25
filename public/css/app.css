@@ -1,0 +1,20 @@
+  .upload-area {
+    width: 600px;
+    height: 300px;
+    border: 4px dashed #ccc;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    [contentEditable=true]: empty: not(: focus):before {
+      content: attr(data-text)
+    }
+  }
+  
+  div[data-placeholder].upload-area:before {
+    content: attr(data-placeholder);
+    float: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #b3b3b3;
+  }
