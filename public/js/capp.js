@@ -28,7 +28,7 @@
                     autoUpload: true
                 });
             }
-        ])
+        ]);
 
 	app.controller('ImageUplaodController', ['$http', '$scope', '$log', '$filter', '$window', 
 		function($http, $scope, $log){
@@ -44,7 +44,7 @@
 
         var formObj = JSON.parse(data.formData);
 
-        $log.debug($.type(formObj))
+        $log.debug($.type(formObj));
 
 		    $scope.options = {
             	url: data.url,

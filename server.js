@@ -9,7 +9,7 @@ var ejs = require('ejs');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname), '/bower_components'))
+app.use(express.static(path.join(__dirname), '/bower_components'));
 
 app.set('view engine', 'ejs');
 app.engine('.html', ejs.renderFile);
@@ -36,7 +36,7 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res){
   res.render('index.html');
-})
+});
 
 /////////////////////////////////
 
@@ -48,7 +48,7 @@ app.get('/getUploadDetails', function(req, res) {
     /* formData contain attributes which needs to be send to cloudinary along with file
      Attributes : {'timestamp', 'callback', 'signature', 'api_key'}" 
      */
-    var formData = imageUtil.getFormData(req)
+    var formData = imageUtil.getFormData(req);
     
     res.json({
       url : uploadUrl,
@@ -74,7 +74,7 @@ app.post('/', function(req, res) {
 
     console.log(imageId);
 
-    var photo = new Object();
+    var photo = {};
     photo.image_id = ImageIdentifier.getImageURL();
     console.log(photo.image_id);    
 
